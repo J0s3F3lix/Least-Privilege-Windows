@@ -1,4 +1,4 @@
-## Que es Least Privilege?
+## ¿Que es Least Privilege?
 
 El principio de privilegio mínimo (PoLP) se refiere a un concepto de seguridad de la información en el que se otorga a un usuario los niveles mínimos de acceso, o permisos, necesarios para realizar sus funciones laborales.
 
