@@ -40,14 +40,13 @@ para cada organización, pero un diseño simple es poner todos los recursos simi
 
 ### EJEMPLO 1
 
-Iniciaremos creando nuestro primer grupo llamado 
-"AD.Delegate_Account"
+Iniciaremos creando nuestro primer grupo llamado "AD.Delegate_Account"
 
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWj0qPhdQvqBHEjaWX3TerTlQVoEaGKzXyOUAZVTMDwItw56UY04wVymvKdD-YFNjSqGAK2qswJE4z1p_olSL8SF11gp77fCeYwSoMCkiAiDgSxeAhY-1Zc7IWouhMBAB2MHnTr_K7Fxa5/s1600/Delegate1.jpg)
 
 >Dicho grupo lo utilizaremos para dar privilegio a Crear, Mover y Elimiar usuarios en AD.
 
-Luego de crear el grupo hacemos clic derecho en lab.local(este caso es mi dominio de prueba)
+>Luego de crear el grupo hacemos clic derecho en lab.local(este caso es mi dominio de prueba)
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk_4MzzM-8odrUOjv7LK1SzG0alH9x8eQS4T0DEIBPPuH5BkgADdaCa9Wjj53VEjR9PpITm4GaeOdVyna1Gw8p6L3KqKVzMu8FhOim78HC2xUm-L3ho5vzoH7tdhBH2c0-iuG4uo7248qX/s1600/Delegate.png)
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEGr2U1BXPLzYV2OBoQxXDqrUmWyUk8DJaUYeMBL6m6j1MtikQlZ3bWabC1tPLNTq2Y2ziiMAIVReasfS6VZrlZ0yvNTO9XEynAgR1Q2NKvSCNosb_3TbbqLXtWwVE6kdjrkZyRYCdD9el/s1600/Delegate2.jpg)
 
@@ -65,7 +64,7 @@ Luego de crear el grupo hacemos clic derecho en lab.local(este caso es mi domini
 
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiD-4X-Zcx57Jlrdg48oheR9H_ZMR6xqlT4AJsA4vJdF8sHGKFt4WUhdd_-L4qHd6pdoTKFcwQ-n1abOe5V-Jc6Zejmonr0LlxwL4_N_8-tXLotcMRKodYZ9nzHBlpU_i84BdmG7r6yVWP/s1600/Delegate9.jpg)
 
-Listo, con estos simple paso, tenemos nuestro primer delegate.
+Listo, con estos simples pasos, tenemos nuestro primer delegate.
 
 ### Recomendaciones Generales.
 
