@@ -31,7 +31,6 @@ para cada organización, pero un diseño simple es poner todos los recursos simi
 
 ## Delegate control mas comunes.
 
-
 |TIPO |TIPO DE PERMISO|
 |---|---|
 |User Account |Create,Move,Password Reset,Disable|
@@ -41,7 +40,9 @@ para cada organización, pero un diseño simple es poner todos los recursos simi
 
 ### EJEMPLO 1
 
-Iniciaremos creando nuestro primer grupo llamado "AD.Delegate_Account"
+Iniciaremos creando nuestro primer grupo llamado 
+"AD.Delegate_Account"
+
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWj0qPhdQvqBHEjaWX3TerTlQVoEaGKzXyOUAZVTMDwItw56UY04wVymvKdD-YFNjSqGAK2qswJE4z1p_olSL8SF11gp77fCeYwSoMCkiAiDgSxeAhY-1Zc7IWouhMBAB2MHnTr_K7Fxa5/s1600/Delegate1.jpg)
 
 >Dicho grupo lo utilizaremos para dar privilegio a Crear, Mover y Elimiar usuarios en AD.
