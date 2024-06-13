@@ -10,6 +10,6 @@ Reduce la superficie de ataque cibernético. Hoy en día, la mayoría de los ata
 
 Detiene la propagación de malware. Al aplicar privilegios mínimos en los endpoints, los ataques de malware (como los ataques de inyección SQL) no pueden usar privilegios elevados para aumentar el acceso y moverse lateralmente para instalar o ejecutar malware o dañar la máquina.
 
-Link de referencia: https://www.cyberark.com/what-is/least-privilege/#:~:text=The%20principle%20of%20least%20privilege%20is%20a%20security,access%20or%20permissions%20needed%20to%20perform%20their%20job.
+Link de referencia: https://www.cyberark.com/what-is/least-privilege/
 
 Dicho todo esto, me enfocaque he ir documentando diferente proceso y tecnica que debemos implementar en un entorno corporativo de cara al aplicar el menor privilegio posible
