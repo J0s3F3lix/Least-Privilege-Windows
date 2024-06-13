@@ -8,8 +8,6 @@ Se considera ampliamente como una buena práctica de ciberseguridad y es un paso
 ## ¿Por qué es importante el principio del mínimo privilegio?
 Reduce la superficie de ataque cibernético. Hoy en día, la mayoría de los ataques avanzados se basan en la explotación de credenciales privilegiadas. Al limitar los privilegios de superusuario y administrador (que proporcionan a los administradores de TI acceso sin restricciones a los sistemas de destino), la aplicación de privilegios mínimos ayuda a reducir la superficie general de ataques cibernéticos.
 
-Detiene la propagación de malware. Al aplicar privilegios mínimos en los endpoints, los ataques de malware (como los ataques de inyección SQL) no pueden usar privilegios elevados para aumentar el acceso y moverse lateralmente para instalar o ejecutar malware o dañar la máquina.
-
 Link de referencia: https://www.cyberark.com/what-is/least-privilege/
 
-Dicho todo esto, me enfocaque he ir documentando diferente proceso y tecnica que debemos implementar en un entorno corporativo de cara al aplicar el menor privilegio posible
+Dicho todo esto, me enfocare he ir documentando diferente proceso y tecnica que debemos implementar en un entorno corporativo de cara a aplicar el menor privilegio posible
