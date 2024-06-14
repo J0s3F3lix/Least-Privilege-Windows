@@ -9,22 +9,16 @@
 ## Introduccion.
 
 
-En Active Directory tiene la capacidad delegar controles a usuario estándar o usuario privilegiado
-de forma muy granular. En un entorno corporativo, un soporte técnico dedica tiempo improductivo a asistir 
-a tickets relacionados con el restablecimiento de contraseñas, desbloquear usuarios, 
-crear usuarios etc. Aunque son tareas simples, estas actividades consumen mucho tiempo.
+En Active Directory tiene la capacidad delegar controles a usuario estándar o usuario privilegiado de forma muy granular. En un entorno corporativo, un soporte técnico dedica tiempo improductivo a asistir
+a tickets relacionados con el restablecimiento de contraseñas, desbloquear usuarios, crear usuarios etc. Aunque son tareas simples, estas actividades consumen mucho tiempo.
+La delegación de control (Delegate Control), ayuda al área de seguridad de la información a permitir que este personal de soporte técnico pueda cumplir con este tipo de tareas, 
+sin comprometer la seguridad. Agregándole privilegio innecesario por desconocimiento. Y al mismo tiempo erradicar esa mala práctica, donde se dan los accesos (Domain Admin u/o Administrador local).
 
-La delegación de control (Delegate Control), ayuda al área de seguridad de la información 
-a permitir que este personal de soporte técnico pueda cumplir con este tipo de tareas, 
-sin comprometer la seguridad. Agregándole privilegio innecesario por desconocimiento.
-Y al mismo tiempo erradicar esa mala práctica, donde se dan los accesos (Domain Admin u/o Administrador local).
 
 
 ## Delegate control mejores practicas
 
-La delegación de permisos en Active Directory se realiza mediante unidades organizativas (OU Organization Unit), 
-por lo que es fundamental tener un buen diseño de OU. El diseño de la unidad organizativa será diferente 
-para cada organización, pero un diseño simple es poner todos los recursos similares en su propia unidad organizativa.
+La delegación de permisos en Active Directory se realiza mediante unidades organizativas (OU Organization Unit), por lo que es fundamental tener un buen diseño de OU. El diseño de la unidad organizativa será diferente para cada organización, pero un diseño simple es poner todos los recursos similares en su propia unidad organizativa.
 
 
 ## Delegate control mas comunes.
@@ -39,7 +33,7 @@ para cada organización, pero un diseño simple es poner todos los recursos simi
 ### EJEMPLO 1
 
 Iniciaremos creando nuestro primer grupo llamado "AD.Delegate_Account" 
-En la descripción del grupo colocaremos lo siguiente: `Este grupo otorga a sus miembros los siguientes privilegios Create,Move,Password Reset,Disable usuarios en AD.`
+En la descripción del grupo colocaremos lo siguiente: **Este grupo otorga a sus miembros los siguientes privilegios Create,Move,Password Reset,Disable usuarios en AD.**
 
 
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWj0qPhdQvqBHEjaWX3TerTlQVoEaGKzXyOUAZVTMDwItw56UY04wVymvKdD-YFNjSqGAK2qswJE4z1p_olSL8SF11gp77fCeYwSoMCkiAiDgSxeAhY-1Zc7IWouhMBAB2MHnTr_K7Fxa5/s1600/Delegate1.jpg)
