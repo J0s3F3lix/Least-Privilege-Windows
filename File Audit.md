@@ -8,7 +8,6 @@
 
 ## Introducción.
 
-```
 La auditoría de seguridad es una de las herramientas más eficaces para mantener la seguridad de una empresa.
 Uno de los principales objetivos de las auditorías de seguridad es el cumplimiento de las normas.
 Además, las auditorías de seguridad ayudan a detectar comportamientos anómalos, a identificar y mitigar brechas
@@ -23,33 +22,34 @@ Poder obtener eventos concretos sobre el acceso a información de alto nivel per
 tiempo de respuesta y la exactitud de la investigación.
 
 Link Referencia: https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/scenario--file-access-auditing
-```
+
 ![image](https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/media/scenario--file-access-auditing/dynamicaccesscontrol_revguide_4.jpg)
 
 ## Auditoría de archivos y carpetas.
 
-```
+
 Durante un tiempo estuve investigando cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar ninguna
 solución de tercero y de carpetas críticas. luego de muchas horas de investigación y con una curiosidad que me invadía debido a deseaba
 habilitar la auditoria, pero a carpeta críticas y no todas las carpetas de Windows. como muchos procesos en internet tenía documentados.
 
 Mi conclusión fue la siguiente:
 He construido un script de PowerShell que se compone de dos archivos.
-- DirectoryAudit.ps1
-- PathDirectoryAudit.txt
+
+**DirectoryAudit.ps1** y **PathDirectoryAudit.txt**
+
 Ambos juntos podemos habilitar la auditoria de carpetas criticas sin la necesidad de un software de tercero.
-```
+
 
 ## Paso practico de implementacion.
 
 #### Paso#1 
-Se debe tener o crear una politica AD que habilite el  “Audit Object Access”, “Success” and “Failure”
+Se debe tener o crear una politica en AD que habilite el  “Audit Object Access”, **“Success” and “Failure”**
 ```
 Este parámetro de configuración lo podemos encontrar en::
 “Computer Configuration” ➔ “Windows Settings” ➔ “Security Settings” ➔ “Local Policies” ➔ “Audit Policy”.
 ```
 #### Paso#2
-Crear el `DirectoryAudit.ps1` con el siguiente contenido.
+Crear el **DirectoryAudit.ps1** con el siguiente contenido.
 
 ```
 $TargetFolders = Get-Content C:\FilesandDirectoryAudit.txt
@@ -68,7 +68,7 @@ foreach ($TargetFolder in $TargetFolders)
 Write-Host "Audit Policy File/Directory applied successfully."
 ```
 #### Paso#3
-Ahora crearemos el `PathDirectoryAudit.txt` con el siguiente contenido.
+Ahora crearemos el **PathDirectoryAudit.txt** con el siguiente contenido.
 
 ```
 C:\Windows\AppPatch\Custom
@@ -85,7 +85,7 @@ C:\Windows\SysWOW64\WindowsPowerShell
 C:\Windows\Tasks
 ```
 #### Paso#4
-Colocar ambos archivo en la carpeta sysvol en mi laboratorio es `C:\Windows\SYSVOL\laps.local\`
+Colocar ambos archivo en la carpeta sysvol en mi laboratorio es **C:\Windows\SYSVOL\laps.local\**
 
 #### Paso#5
 Creamos una GPO que tome ambos archivo y lo coloque de manera local en cada carpeta.
