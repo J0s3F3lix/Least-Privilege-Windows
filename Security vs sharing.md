@@ -8,15 +8,11 @@
 
 ## Introduccion.
 
-```
 Para muchos puede llegar a ser confuso para otro nos, pero no está de más aclarar las diferencias de permiso NTFS y SMB.
 en otra palabra (Security vs Sharing). Algo a tener bien presente es que al combinar ambos permisos se convierten en un conjunto de permisos
 y cuando se accede desde la red, aplica el más restrictivo.
-```
-
 
 ## Definición de Permisos Security (NTFS).
-
 ```
 Full Control = Acceso total, esto incluye administrar permisos.
 Modify = Acceso solo a Modificar
