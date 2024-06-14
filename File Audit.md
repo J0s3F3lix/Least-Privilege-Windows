@@ -88,9 +88,18 @@ C:\Windows\Tasks
 Colocar ambos archivo en la carpeta sysvol en mi laboratorio es **C:\Windows\SYSVOL\laps.local\**
 
 #### Paso#5
-Creamos una GPO que tome ambos archivo y lo coloque de manera local en cada carpeta.
+Creamos una GPO que tome ambos archivo y lo coloque de manera local en cada servidor y luego la ejecute.
+
+```
+Computer Configuration ➔ Policies ➔ Windows Settings ➔ Scripts ➔ Startup ➔ C:\Windows\audit\DirectoryAudit.ps1
+
+Computer Configuration ➔ Preferences ➔ Windows Settings ➔ Files ➔
+    Source file: \\laps.local\\NETLOGON\audit\DirectoryAudit.ps1
+    Destination file: C:\Windows\audit\DirectoryAudit.ps1
+    
+Computer Configuration ➔ Preferences ➔ Windows Settings ➔ Files ➔
+    Source file: \\laps.local\\NETLOGON\audit\PathDirectoryAudit.txt
+    Destination file: C:\Windows\audit\PathDirectoryAudit.txt
+```
 
 
-### Recomendaciones Generales.
-
->Sin terminar
