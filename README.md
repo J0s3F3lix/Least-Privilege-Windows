@@ -6,7 +6,7 @@ El principio de privilegio mínimo (PoLP) se refiere a un concepto de seguridad 
 Hoy en día, la mayoría de los ataques avanzados se basan en la explotación de credenciales privilegiadas. Al limitar los privilegios de superusuario y administrador, Reduce la superficie de ataque cibernético. 
 Dicho todo esto, me enfocare he ir documentando diferente proceso y tecnica que debemos implementar en un entorno corporativo de cara a aplicar el menor privilegio posible en ambiente windows.
 
-## Delegate Control
+## Delegate Control Active Directory.
 
 En Active Directory tiene la capacidad delegar controles a usuario estándar o usuario privilegiado de forma muy granular. En un entorno corporativo, un soporte técnico dedica tiempo improductivo a asistir a tickets relacionados con el restablecimiento de contraseñas, desbloquear usuarios, crear usuarios etc. Aunque son tareas simples, estas actividades consumen mucho tiempo. La delegación de control (Delegate Control), ayuda al área de seguridad de la información a permitir que este personal de soporte técnico pueda cumplir con este tipo de tareas, sin comprometer la seguridad. Agregándole privilegio innecesario por desconocimiento. Y al mismo tiempo erradicar esa mala práctica, donde se dan los accesos (Domain Admin u/o Administrador local).
 
