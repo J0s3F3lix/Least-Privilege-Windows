@@ -18,3 +18,6 @@ Para muchos puede llegar a ser confuso para otro nos, pero no está de más acla
 ## Auditoría de archivos y carpetas.
 Durante un tiempo estuve investigando cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar ninguna solución de tercero y de carpetas críticas. luego de muchas horas de investigación y con una curiosidad que me invadía debido a deseaba habilitar la auditoria, pero a carpeta críticas y no todas las carpetas de Windows. como muchos procesos en internet tenía documentados.
 Mi conclusión fue la siguiente: He construido un script de PowerShell que se compone de dos archivos.
+
+## Creditos:
+El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
