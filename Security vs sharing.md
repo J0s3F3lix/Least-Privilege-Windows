@@ -48,3 +48,7 @@ Sharing SMB = Change
 
 En este ejemplo tendremos el privilegio `Change`, aunque `Security NTFS` tenga “Full Control” por que la regla dice: Se aplica el más
 restrictivo de los dos permiso.
+
+
+## Creditos:
+El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ) también en compañía de Dayner Rolando Felix.
