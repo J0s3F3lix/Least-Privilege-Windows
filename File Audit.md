@@ -102,4 +102,8 @@ Computer Configuration ➔ Preferences ➔ Windows Settings ➔ Files ➔
     Destination file: C:\Windows\audit\PathDirectoryAudit.txt
 ```
 
+## Creditos:
+El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
 
+
+##
