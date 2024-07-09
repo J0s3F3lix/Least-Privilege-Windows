@@ -67,3 +67,7 @@ Listo, con estos simples pasos, tenemos nuestro primer delegate.
 No use: "Backup Operators" o "DHCP Administrator"
 Estos grupos de AD tienen permisos especiales que pueden otorgar a los usuarios más privilegios de los necesarios.
 
+## Creditos:
+El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
+
+
