@@ -19,5 +19,9 @@ Para muchos puede llegar a ser confuso para otro nos, pero no está de más acla
 Durante un tiempo estuve investigando cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar ninguna solución de tercero y de carpetas críticas. luego de muchas horas de investigación y con una curiosidad que me invadía debido a deseaba habilitar la auditoria, pero a carpeta críticas y no todas las carpetas de Windows. como muchos procesos en internet tenía documentados.
 Mi conclusión fue la siguiente: He construido un script de PowerShell que se compone de dos archivos.
 
+
+## ¿Qué es Active Directory Tier Model?
+El diseño de modelo de niveles o (Active Directory Tier Model) es generalmente una estructura en la que las autorizaciones de usuario están separadas entre sí y los usuarios autorizados solo pueden acceder a los recursos dentro del marco de los permisos que se les otorgan. El nivel de seguridad más importante que aporta la estructura del “Active Directory Tier Mode” que proteger las cuentas de los administradores del dominio o "cuentas confidenciales”.
+
 ## Creditos:
 El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
