@@ -64,10 +64,10 @@ Tier0 - Computer
 Tier0 - Users
 
    
-```
-Advertencia!!!
+
+>Advertencia!!!
 Las restricciones de autenticación no tienen ninguna solución alternativa, lo que significa que los miembros de grupos con privilegios elevados, como el grupo Enterprise Admins o el grupo Domain Admins, están sujetos a las mismas restricciones que otros miembros del grupo Usuarios protegidos. Si todos los miembros de estos grupos se agregan al grupo Usuarios protegidos, es posible que se bloqueen todas esas cuentas. Nunca debe agregar todas las cuentas con privilegios elevados al grupo Usuarios protegidos hasta que haya probado exhaustivamente el impacto potencial.
-```
+
 
 
 
