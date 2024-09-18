@@ -9,7 +9,8 @@
 
 ## Introducción.
 
-Antes de iniciar quiero decir que me apasiona la ciberseguridad en ambiente Windows, pero muy especialmente enfocado al entorno corporativo, de ahí a un tema que siempre he querido desarrollar a pesar de toda la documentación existente en internet “Active Directory Tier Model”. De este tema hare un resumen en cuanto al tema de Active Directory Tier Model el cual me enamore desde el primer día. 
+<div style="text-align: justify"> 
+Antes de iniciar quiero decir que me apasiona la ciberseguridad en ambiente Windows, pero muy especialmente enfocado al entorno corporativo, de ahí a un tema que siempre he querido desarrollar a pesar de toda la documentación existente en internet “Active Directory Tier Model”. De este tema hare un resumen en cuanto al tema de Active Directory Tier Model el cual me enamore desde el primer día. <div/>
 
 ## ¿Qué es Active Directory Tier Model?
 
