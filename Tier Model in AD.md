@@ -59,8 +59,8 @@ No deben existir permisos a nivel de ACL o Delegate que tengan permisos confiden
 
 Crear una estructura en el AD de la siguiente manera:
 
-Tier0 - Computer
-Tier0 - Users
+- Tier0 - Computer
+- Tier0 - Users
 
    
 >¡¡¡Advertencia!!!
