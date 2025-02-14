@@ -1,9 +1,4 @@
-# 🔐 Configuración de Seguridad en WorkShops  
-## Atacando & Defendiendo Windows Active Directory  
-
-[![Windows](https://img.shields.io/badge/Windows-Active%20Directory-blue?style=flat&logo=windows)](https://www.microsoft.com/)  
-[![Security](https://img.shields.io/badge/Security-CIS%20Benchmark-critical?style=flat&logo=cybersecurity)](https://www.cisecurity.org/)  
-❤️ **Con amor, NickGitHub: [J0s3F3lix](https://github.com/J0s3F3lix)**  
+## 🔐 Configuración de Seguridad en WorkShops Atacando & Defendiendo Windows Active Directory
 
 ---
 
@@ -111,6 +106,8 @@ System -> Audit System Integrity: Success and Failure
 - 📜 [Microsoft Security Baselines](https://www.microsoft.com/en-us/security/blog/)  
 
 ---
-
 👾 ¡Gracias por leer!👾
-🛡️ El contenido fue realizado en ayuda de Moises Mejia y Enrique Eusebio Landestoy y [J0s3F3lix](https://github.com/J0s3F3lix)**   🛡️
+[![Windows](https://img.shields.io/badge/Windows-Active%20Directory-blue?style=flat&logo=windows)](https://www.microsoft.com/)  
+[![Security](https://img.shields.io/badge/Security-CIS%20Benchmark-critical?style=flat&logo=cybersecurity)](https://www.cisecurity.org/)  
+❤️ **Con amor, NickGitHub: [J0s3F3lix](https://github.com/J0s3F3lix)**  
+🛡️ El contenido fue realizado en ayuda de Moises Mejia y Enrique Eusebio Landestoy**🛡️
