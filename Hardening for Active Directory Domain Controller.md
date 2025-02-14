@@ -113,4 +113,4 @@ System -> Audit System Integrity: Success and Failure
 ---
 
 👾 ¡Gracias por leer!👾
-🛡️ El contenido fue realizado en ayuda de Moises Mejia y Enrique Eusebio Landestoy y Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ) 🛡️
+🛡️ El contenido fue realizado en ayuda de Moises Mejia y Enrique Eusebio Landestoy y [J0s3F3lix](https://github.com/J0s3F3lix)**   🛡️
