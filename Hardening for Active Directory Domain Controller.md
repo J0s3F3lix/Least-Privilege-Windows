@@ -1,4 +1,5 @@
-## 🔐 Configuración de Seguridad en WorkShops Atacando & Defendiendo Windows Active Directory
+# 🔐 Hardening for Active Directory Domain Controller
+## WorkShops Atacando & Defendiendo Windows Active Directory HackConRD2025
 
 ---
 
