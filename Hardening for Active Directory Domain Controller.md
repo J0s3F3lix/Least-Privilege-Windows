@@ -1,6 +1,8 @@
 # 🔐 Hardening for Active Directory Domain Controller
 ## WorkShops Atacando & Defendiendo Windows Active Directory HackConRD2025
 
+[![Windows](https://img.shields.io/badge/Windows-Active%20Directory-blue?style=flat&logo=windows)](https://www.microsoft.com/)  
+[![Security](https://img.shields.io/badge/Security-CIS%20Benchmark-critical?style=flat&logo=cybersecurity)](https://www.cisecurity.org/)  
 ---
 
 ## 📖 Tabla de Contenidos  
@@ -108,7 +110,6 @@ System -> Audit System Integrity: Success and Failure
 
 ---
 👾 ¡Gracias por leer!👾
-[![Windows](https://img.shields.io/badge/Windows-Active%20Directory-blue?style=flat&logo=windows)](https://www.microsoft.com/)  
-[![Security](https://img.shields.io/badge/Security-CIS%20Benchmark-critical?style=flat&logo=cybersecurity)](https://www.cisecurity.org/)  
+
 ❤️ **Con amor, NickGitHub: [J0s3F3lix](https://github.com/J0s3F3lix)**  
 🛡️ El contenido fue realizado en ayuda de Moises Mejia y Enrique Eusebio Landestoy**🛡️
