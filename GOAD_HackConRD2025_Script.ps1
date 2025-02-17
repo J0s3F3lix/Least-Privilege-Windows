@@ -1,8 +1,13 @@
-
 # Cambiar color del fondo y texto de la consola PowerShell
 $Host.UI.RawUI.BackgroundColor = "DarkBlue"
 $Host.UI.RawUI.ForegroundColor = "White"
 Clear-Host
+
+# Banner de inicio
+Write-Host "==========================="
+Write-Host "HackConRD_2025"
+Write-Host "Creado por Jose Felix (aka J0s3F3lix)"
+Write-Host "==========================="
 
 # Mensaje inicial
 Write-Host "Iniciando configuración de seguridad para Active Directory..." -ForegroundColor Cyan
