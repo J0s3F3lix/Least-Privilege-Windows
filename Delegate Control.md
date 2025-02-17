@@ -1,46 +1,63 @@
-## Delegate Control Active Directory .
-## Contenido
-- Introducción.
-- Delegate control mejores practicas.
-- Delegate control mas comunes.
-- Ejemplo.
-- Recomendaciones Generales.
+# Delegate Control en Active Directory
 
-## Introduccion.
+## Índice
+- [Introducción](#introducción)
+- [Mejores Prácticas](#mejores-prácticas)
+- [Delegaciones Comunes](#delegaciones-comunes)
+- [Ejemplo de Configuración](#ejemplo-de-configuración)
+- [Recomendaciones Generales](#recomendaciones-generales)
+- [Créditos](#créditos)
+
+---
+
+## Introducción
+
+Active Directory permite delegar controles a usuarios estándar o privilegiados de manera granular. En entornos corporativos, el soporte técnico invierte una cantidad considerable de tiempo en tareas repetitivas como:
+
+- Restablecimiento de contraseñas
+- Desbloqueo de cuentas
+- Creación de usuarios
+
+Si bien estas tareas son simples, consumen tiempo y pueden generar riesgos de seguridad si no se gestionan correctamente. La delegación de control permite asignar estos permisos al personal adecuado sin comprometer la seguridad, evitando otorgar privilegios innecesarios, como el acceso de **Domain Admin** o **Administrador local**.
+
+---
+
+## Mejores Prácticas
+
+La delegación de permisos en Active Directory se realiza mediante **Unidades Organizativas (OU - Organizational Units)**. Un buen diseño de OU es fundamental para garantizar una administración eficiente y segura. Aunque la estructura puede variar según la organización, una recomendación general es agrupar los recursos similares dentro de su propia OU.
+
+---
+
+## Delegaciones Comunes
+
+| **Tipo**          | **Permisos Delegados** |
+|------------------|----------------------|
+| **User Account**  | Create, Move, Password Reset, Disable |
+| **Computers**     | Create, Move, Disable |
+| **Groups**       | Create, Move, Disable |
+| **Organizational Unit** | Create, Move, Delete |
 
 
-En Active Directory tiene la capacidad delegar controles a usuario estándar o usuario privilegiado de forma muy granular. En un entorno corporativo, un soporte técnico dedica tiempo improductivo a asistir
-a tickets relacionados con el restablecimiento de contraseñas, desbloquear usuarios, crear usuarios etc. Aunque son tareas simples, estas actividades consumen mucho tiempo.
-La delegación de control (Delegate Control), ayuda al área de seguridad de la información a permitir que este personal de soporte técnico pueda cumplir con este tipo de tareas, 
-sin comprometer la seguridad. Agregándole privilegio innecesario por desconocimiento. Y al mismo tiempo erradicar esa mala práctica, donde se dan los accesos (Domain Admin u/o Administrador local).
+---
 
+## Ejemplo de Configuración
 
+### 1️⃣ Crear un Grupo de Delegación
 
-## Delegate control mejores practicas
-
-La delegación de permisos en Active Directory se realiza mediante unidades organizativas (OU Organization Unit), por lo que es fundamental tener un buen diseño de OU. El diseño de la unidad organizativa será diferente para cada organización, pero un diseño simple es poner todos los recursos similares en su propia unidad organizativa.
-
-
-## Delegate control mas comunes.
-
-|TIPO |TIPO DE PERMISO|
-|---|---|
-|User Account |Create,Move,Password Reset,Disable|
-|Computers |Create,Move,Disable|
-|Group| Create,Move,Disable|
-|Organization Unit|Create,Move,Delete|
-
-### EJEMPLO 1
-
-Iniciaremos creando nuestro primer grupo llamado "AD.Delegate_Account" 
-En la descripción del grupo colocaremos lo siguiente: **Este grupo otorga a sus miembros los siguientes privilegios Create,Move,Password Reset,Disable usuarios en AD.**
+Crearemos un grupo llamado **`AD.Delegate_Account`** con la siguiente descripción:
 
 
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWj0qPhdQvqBHEjaWX3TerTlQVoEaGKzXyOUAZVTMDwItw56UY04wVymvKdD-YFNjSqGAK2qswJE4z1p_olSL8SF11gp77fCeYwSoMCkiAiDgSxeAhY-1Zc7IWouhMBAB2MHnTr_K7Fxa5/s1600/Delegate1.jpg)
 
 
-Luego de crear el grupo hacemos clic derecho en la raíz del active directory en mi caso es lab.local y desde aquí buscaremos la opción Delégate.
+### 2️⃣ Delegar Permisos en Active Directory
 
+Luego de crear el grupo, seguimos estos pasos:
+1. Hacer clic derecho en la raíz de Active Directory (ejemplo: `lab.local`).
+2. Seleccionar la opción **Delegate Control**.
+3. Seguir las instrucciones del asistente de delegación.
+
+#### 📸 Capturas del Proceso
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk_4MzzM-8odrUOjv7LK1SzG0alH9x8eQS4T0DEIBPPuH5BkgADdaCa9Wjj53VEjR9PpITm4GaeOdVyna1Gw8p6L3KqKVzMu8FhOim78HC2xUm-L3ho5vzoH7tdhBH2c0-iuG4uo7248qX/s1600/Delegate.png)
 
 ![image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEGr2U1BXPLzYV2OBoQxXDqrUmWyUk8DJaUYeMBL6m6j1MtikQlZ3bWabC1tPLNTq2Y2ziiMAIVReasfS6VZrlZ0yvNTO9XEynAgR1Q2NKvSCNosb_3TbbqLXtWwVE6kdjrkZyRYCdD9el/s1600/Delegate2.jpg)
@@ -61,13 +78,17 @@ Luego de crear el grupo hacemos clic derecho en la raíz del active directory en
 
 Listo, con estos simples pasos, tenemos nuestro primer delegate.
 
-### Recomendaciones Generales.
+## Recomendaciones Generales
 
->Cuando hagamos un delegar control, favor NO utilizar grupos de AD por default. Ejemplo
-No use: "Backup Operators" o "DHCP Administrator"
-Estos grupos de AD tienen permisos especiales que pueden otorgar a los usuarios más privilegios de los necesarios.
+✅ **No usar grupos predeterminados de Active Directory** para delegar control. 
 
-## Creditos:
-El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
+🚫 *Evitar grupos como:* `Backup Operators`, `DHCP Administrator`.
 
+Estos grupos tienen permisos especiales que pueden otorgar más privilegios de los necesarios a los usuarios.
+
+---
+
+## Créditos
+
+📌 **Autor:** Jose Félix *(Rookieヾ ⁿᵒᵛᵃᵗᵒ)*
 
