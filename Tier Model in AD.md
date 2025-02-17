@@ -1,84 +1,86 @@
-## Implementando Proteccion Tier 0 
-### Contenido
+# 🔐 Implementando Protección Tier 0
 
-- Introducción.
-- ¿Qué es Active Directory Tier Model?
-- Los 3 Principio del Active Directory Tier Model.
-- Paso practico de implementación.
-- Recomendaciones.
+## 📌 Contenido
+- [Introducción](#introducción)
+- [¿Qué es Active Directory Tier Model?](#qué-es-active-directory-tier-model)
+- [Principios del Active Directory Tier Model](#principios-del-active-directory-tier-model)
+- [Protección de los Activos del Tier 0](#protección-de-los-activos-del-tier-0)
+- [Requerimientos para Tier 0](#requerimientos-para-tier-0)
+- [Implementación de Tier 0](#implementación-de-tier-0)
+- [Recomendaciones Generales](#recomendaciones-generales)
 
-## Introducción.
+---
 
-<div style="text-align: justify"> 
-Antes de iniciar quiero decir que me apasiona la ciberseguridad en ambiente Windows, pero muy especialmente enfocado al entorno corporativo, de ahí a un tema que siempre he querido desarrollar a pesar de toda la documentación existente en internet “Active Directory Tier Model”. De este tema hare un resumen en cuanto al tema de Active Directory Tier Model el cual me enamore desde el primer día. <div/>
+## 📖 Introducción
+Me apasiona la ciberseguridad en entornos Windows, especialmente en el ámbito corporativo. Uno de los temas que más me ha interesado es el **Active Directory Tier Model**. En este documento, presentaré un resumen detallado de este modelo, con un enfoque especial en la protección del **Tier 0**, el primer paso crítico en la seguridad de Active Directory.
 
-## ¿Qué es Active Directory Tier Model?
+---
 
-El diseño de modelo de niveles o (Active Directory Tier Model) es generalmente una estructura en la que las autorizaciones de usuario están separadas entre sí y los usuarios autorizados solo pueden acceder a los recursos dentro del marco de los permisos que se les otorgan. 
-El nivel de seguridad más importante que aporta la estructura del “Active Directory Tier Mode” que proteger las cuentas de los administradores del dominio o "cuentas confidenciales”.
+## 🏛️ ¿Qué es Active Directory Tier Model?
+El **Active Directory Tier Model** es una estructura que separa las autorizaciones de usuario en diferentes niveles, permitiendo que cada usuario acceda solo a los recursos dentro del marco de los permisos que se le otorgan.
 
-Enlace de Referencia: [Securing privileged access Enterprise access model - Privileged access | Microsoft Learn](https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model)
+📌 **Objetivo principal:** Proteger las cuentas administrativas y los activos críticos dentro de Active Directory.
 
-![image](https://www.piservices.fr/wp-content/uploads/2020/06/projet-tier-model-microsoft-scaled.jpg)
+📖 **Referencia:** [Securing Privileged Access - Microsoft Learn](https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model)
 
-_Active Directory Tiered Administrative Model Control Restrictions (Image Credit: Microsoft)_
-	
-Tomando en cuenta lo ante dicho, en esta primera parte nos en enfocaremos en proteger el nivel 0 es el primer paso crítico hacia para la protección de Active Directory y la intención mía es guiarle paso a paso en realizar este primer paso.
+![Modelo de Niveles AD](https://www.piservices.fr/wp-content/uploads/2020/06/projet-tier-model-microsoft-scaled.jpg)
 
-## Los 3 Principio del TIER Model AD:
+---
 
-Principio #1: Las credenciales de una cuenta de administrador o de servicio de nivel 0 no deben exponerse a sistemas de nivel inferior.
+## 🔑 Principios del Active Directory Tier Model
 
-Principio #2: Las credenciales de nivel inferior pueden usar los servicios proporcionados por los niveles superiores, pero no al revés. 
+1️⃣ **Las credenciales de una cuenta de administrador o de servicio de nivel 0 no deben exponerse a sistemas de nivel inferior.**
+2️⃣ **Las credenciales de nivel inferior pueden usar los servicios de los niveles superiores, pero no al revés.**
+3️⃣ **Cualquier sistema o cuenta de usuario que pueda administrar un nivel superior también debe ser miembro de ese nivel.**
 
-Principio # 3: Cualquier sistema o cuenta de usuario que pueda administrar un nivel superior también debe ser miembro de ese nivel.
+📌 **Ejemplo de Segmentación:**
+![Segmentación de Niveles](https://i0.wp.com/www.cozumpark.com/wp-content/uploads/2022/10/Modified-Microsofts-administrative-three-tier-Model-2.png?w=850&quality=80&ssl=1)
 
-Ejemplo:
+---
 
-![image](https://i0.wp.com/www.cozumpark.com/wp-content/uploads/2022/10/Modified-Microsofts-administrative-three-tier-Model-2.png?w=850&quality=80&ssl=1)
+## 🏰 Protección de los Activos del Tier 0
 
-_Active Directory Tiered Administrative Model Control Restrictions (Image Credit: Microsoft)_
+El **Tier 0** engloba los activos que proporcionan control directo sobre la infraestructura de seguridad e identidad. 
 
-## Protegiendo los activos del TIER 0
+🎯 **Ejemplos de activos en Tier 0:**
+- Controladores de dominio (Domain Controllers).
+- Servidores de certificación interna (CA Servers).
+- Herramientas de gestión de identidad y acceso (IAM).
+- File Servers críticos.
 
-Para iniciar con los preparativos de protección utilizaremos un modelo de 3 niveles.
+---
 
-- **Nivel 0**: Activos que proporcionan control directo de la infraestructura de seguridad e identidad. El controlador de dominio es el activo más crítico del nivel 0. Pero también podemos tener en este nivel el servidor de CA interno, herramientas de gestión de identidades y accesos (IAM) y hasta podemos llegar a tener un FileServer.
+## ⚙️ Requerimientos para Tier 0
+✔️ **RestrictedAdmin Required – Computer.**
+✔️ **Restrict Workstation Logon.**
+✔️ **Restrict Server Logon.**
 
-## Requerimientos para TIER 0
+---
 
-- RestrictedAdmin Required – Computer
-- Restrict Workstation Logon
-- Restrict Server Logon
-## Implementación TIER 0
+## 🛠️ Implementación de Tier 0
+Para limitar el uso de cuentas de nivel 0 a equipos de nivel 0, se deben seguir los siguientes pasos:
 
-Lo siguiente pasos son esenciales para limitar el uso de cuenta de nivel 0 (administradores y cuentas de servicio) a equipos de nivel 0.
+1️⃣ **Habilitar la protección de Kerberos (FAST)** en controladores de dominio y equipos Tier 0.
+2️⃣ **Eliminar permisos ACL o Delegate** que otorguen permisos confidenciales en la raíz del dominio.
+3️⃣ **Crear una estructura organizada en Active Directory:**
+   - `Tier0 - Computer`
+   - `Tier0 - Users`
 
-Debemos de habilitar la protección de Kerberos (FAST) para controladores de dominio y todos los equipos del nivel 0.
+⚠️ **Advertencia:** Las restricciones de autenticación no tienen soluciones alternativas. Si todos los administradores de dominio se agregan a usuarios protegidos sin pruebas previas, podrían bloquearse todas las cuentas con privilegios elevados.
 
-No deben existir permisos a nivel de ACL o Delegate que tengan permisos confidenciales en el nivel raíz del dominio.
+---
 
-Crear una estructura en el AD de la siguiente manera:
+## ✅ Recomendaciones Generales
+Parte del contenido ha sido extraído y traducido de investigaciones especializadas en seguridad de Active Directory.
 
-- Tier0 - Computer
-- Tier0 - Users
+📖 **Referencias clave:**
+- [Configurar cuentas protegidas - Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/how-to-configure-protected-accounts#create-a-user-account-audit-for-authentication-policy-with-adac)
+- [Configuración de Tiering en AD - Petri IT Knowledgebase](https://petri.com/keep-active-directory-secure-using-privileged-access-workstations/)
+- [Diseño de Active Directory Tiering - ÇözümPark](https://www.cozumpark.com/active-directory-tiering-model-tasarimi-bolum-1/)
+- [Mitigación de Privilege Escalation - Ravenswood Technology](https://www.ravenswoodtechnology.com/how-to-mitigate-privilege-escalation-with-the-tiered-access-model-for-active-directory-security/)
+- [Protección de Tier 0 - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/protecting-tier-0-the-modern-way/ba-p/4052851)
 
-   
->¡¡¡Advertencia!!!
-Las restricciones de autenticación no tienen ninguna solución alternativa, lo que significa que los miembros de grupos con privilegios elevados, como el grupo Enterprise Admins o el grupo Domain Admins, están sujetos a las mismas restricciones que otros miembros del grupo Usuarios protegidos. Si todos los miembros de estos grupos se agregan al grupo Usuarios protegidos, es posible que se bloqueen todas esas cuentas. Nunca debe agregar todas las cuentas con privilegios elevados al grupo Usuarios protegidos hasta que haya probado exhaustivamente el impacto potencial.
+---
 
-
-### Recomendaciones Generales.
-
-Parte del contenido de esta documentación fue extraída y traducida al español de los siguientes investigadores, lo cuales me ayudaron en este viaje tan emocionante sobre la seguridad en Active Directory.
-
-[Guidance about how to configure protected accounts | Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/how-to-configure-protected-accounts#create-a-user-account-audit-for-authentication-policy-with-adac)
-[Set Up Active Directory to Support Tiered Administration and Privileged Access Workstations - Petri IT Knowledgebase](https://petri.com/keep-active-directory-secure-using-privileged-access-workstations/)
-[Active Directory Tiering Model Tasarımı Bölüm-1 - ÇözümPark (cozumpark.com)](https://www.cozumpark.com/active-directory-tiering-model-tasarimi-bolum-1/)
-[How to Mitigate Privilege Escalation with the Tiered Access Model for Active Directory Security - Ravenswood Technology Group](https://www.ravenswoodtechnology.com/how-to-mitigate-privilege-escalation-with-the-tiered-access-model-for-active-directory-security/)
-[Protecting Tier 0 the Modern Way - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/protecting-tier-0-the-modern-way/ba-p/4052851)
-
-[Initially Isolate Tier 0 Assets with Group Policy to Start Administrative Tiering - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/initially-isolate-tier-0-assets-with-group-policy-to-start/ba-p/1184934)
-
-[Microsoft Security Best Practices module: Privileged administration - Privileged access | Microsoft Learn](https://learn.microsoft.com/en-us/security/privileged-access-workstations/administration-videos-and-decks)
-
+📌 **Autor:** José Félix *(Rookieヾ ⁿᵒᵛᵃᵗᵒ)*  
+📌 **Repositorio:** [GitHub - Tier 0 Protection](#)  
