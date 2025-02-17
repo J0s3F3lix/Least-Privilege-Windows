@@ -1,54 +1,71 @@
-## Security (NTFS) VS Sharing (SMB).
-## Temas a tratar
-- Introducción.
-- Definición de Permisos Security (NTFS).
-- Definición de Permisos Sharing (SMB).
-- Ejemplo.
+# 🔐 Security (NTFS) vs. Sharing (SMB)
 
+## 📌 Contenido
+- [Introducción](#introducción)
+- [Permisos NTFS (Security)](#permisos-ntfs-security)
+- [Permisos SMB (Sharing)](#permisos-smb-sharing)
+- [Ejemplos Prácticos](#ejemplos-prácticos)
+- [Créditos](#créditos)
 
-## Introducción.
+---
 
-Para muchos puede llegar a ser confuso para otro no, pero no está de más aclarar las diferencias de permiso NTFS y SMB.
-en otra palabra (Security vs Sharing). Algo a tener bien presente es que al combinar ambos permisos se convierten en un conjunto de permisos
-y cuando se accede desde la red, aplica el más restrictivo.
+## 📖 Introducción
+Al administrar permisos en Windows, es común confundir los permisos de seguridad de **NTFS (Security)** con los permisos de compartición de **SMB (Sharing)**. Es fundamental entender que al combinar ambos, se aplicará **el permiso más restrictivo** cuando se accede a los recursos compartidos en la red.
 
-## Definición de Permisos Security (NTFS).
+Este documento tiene como objetivo aclarar las diferencias y ayudar a comprender cómo funcionan ambos modelos de permisos.
+
+---
+
+## 🔒 Permisos NTFS (Security)
+Los permisos NTFS controlan el acceso a archivos y carpetas en sistemas de archivos formateados con NTFS, ya sea en acceso local o remoto. Estos permisos son más detallados y ofrecen un mayor control.
+
+### 📜 Lista de Permisos NTFS:
+```plaintext
+Full Control = Acceso total, incluyendo administración de permisos.
+Modify = Permite modificar archivos y carpetas.
+Read & Execute = Permite leer y ejecutar archivos.
+List Folder Contents = Solo permite listar los contenidos de la carpeta.
+Read = Solo permite leer el contenido de archivos y carpetas.
+Write = Permite escribir y modificar archivos, pero no eliminarlos.
+Special Permissions = Permisos personalizados específicos.
 ```
-Full Control = Acceso total, esto incluye administrar permisos.
-Modify = Acceso solo a Modificar
-Read & Execute = Acceso a leer y ejecutar
-List Folder contents = solo a listar el contenido, ósea es decir solo ver que tiene la carpeta.
-Read = Solo lectura, puede ver el contenido y leer el contenido de un archivo existente pero no hacer más nada.
-Write = Solo escritura, puede tomar. Por supuesto, incluye implica el uso del permiso para lectura.
-Special Permissions = es como modificar un permiso, para un caso en específico.
+
+---
+
+## 🌐 Permisos SMB (Sharing)
+Los permisos de compartición (SMB) determinan el acceso a carpetas compartidas en una red. Estos permisos son menos granulares y solo controlan el acceso al recurso compartido.
+
+### 📜 Lista de Permisos SMB:
+```plaintext
+Full Control = Acceso total a la carpeta compartida.
+Change = Permite modificar archivos y carpetas dentro del recurso compartido.
+Read = Solo permite leer archivos dentro de la carpeta compartida.
 ```
 
-## Definición de Permisos Sharing (SMB).
+---
 
-```
-Full Control = Acceso total.
-Change = Acceso a Modificar.
-Read = Solo lectura, puede ver el contenido y leer el contenido de un archivo existente pero no hacer más nada.
-```
-### EJEMPLO 1
+## 🧩 Ejemplos Prácticos
 
-En una carpeta compartida (A) accesado via red tenemos lo siguiente permisos
+### 🔹 **Ejemplo 1**
+> **Configuración:**
 ```
 Security NTFS = Read
 Sharing SMB = Change
 ```
-Cualquiera diría que, al acceder vía RED, tendríamos permiso de `Change`, pero no es así, debido a que `Security NTFS` tiene permiso de `Read`. y como la regla dice: Se aplica el más
-restrictivo de los dos permiso. Entonces solo tendremos acceso de lectura para este ejemplo.
+**Resultado:** El usuario tendrá acceso de **solo lectura**, ya que NTFS es más restrictivo.
 
-### EJEMPLO 2
+### 🔹 **Ejemplo 2**
+> **Configuración:**
 ```
 Security NTFS = Full Control
 Sharing SMB = Change
 ```
+**Resultado:** El usuario tendrá acceso de **cambio/modificación**, ya que Sharing SMB es más restrictivo.
 
-En este ejemplo tendremos el privilegio `Change`, aunque `Security NTFS` tenga “Full Control” por que la regla dice: Se aplica el más
-restrictivo de los dos permiso.
+📌 **Regla General:** **Siempre se aplicará el permiso más restrictivo** cuando se acceda al recurso desde la red.
 
+---
 
-## Creditos:
-El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ) también en compañía de Dayner Rolando Felix.
+## 👨‍💻 Créditos
+📌 **Autores:** José Félix *(Rookieヾ ⁿᵒᵛᵃᵗᵒ)* y Dayner Rolando Félix  
+📌 **Repositorio:** [GitHub - Security vs Sharing](#)  
