@@ -1,31 +1,88 @@
-## ¿Qué es Least Privilege?
+# 🔐 Principio de Privilegio Mínimo (PoLP)
 
-El principio de privilegio mínimo (PoLP) es un concepto de seguridad de la información en el que se otorgan a los usuarios los niveles mínimos de acceso o permisos necesarios para realizar sus funciones laborales. También se considera una buena práctica de ciberseguridad y es un paso fundamental para proteger el acceso privilegiado a datos y activos de alto valor.
+## 📌 Contenido
+- [Introducción](#introducción)
+- [Importancia del Privilegio Mínimo](#importancia-del-privilegio-mínimo)
+- [Delegate Control en Active Directory](#delegate-control-en-active-directory)
+- [Security (NTFS) vs. Sharing (SMB)](#security-ntfs-vs-sharing-smb)
+- [Auditoría de Archivos y Carpetas](#auditoría-de-archivos-y-carpetas)
+- [Active Directory Tier Model](#active-directory-tier-model)
+- [Créditos](#créditos)
 
-## ¿Por qué es importante el principio del mínimo privilegio (PoLP)?
-Hoy en día, la mayoría de los ataques avanzados se basan en la explotación de credenciales privilegiadas. Al limitar los privilegios de superusuario y administrador, se reduce la superficie de ataque cibernético.
-Dicho esto, me enfocaré en documentar diferentes procesos y técnicas que debemos implementar en un entorno corporativo para aplicar el principio de menor privilegio en ambientes Windows.
+---
 
-## Delegate Control Active Directory.
+## 📖 Introducción
+El **Principio de Privilegio Mínimo (PoLP)** es una estrategia de seguridad que otorga a los usuarios solo los permisos estrictamente necesarios para realizar sus funciones laborales. Aplicar este principio ayuda a minimizar riesgos de seguridad y proteger activos críticos dentro de un entorno corporativo.
 
-En Active Directory se tiene la capacidad de delegar controles a usuarios estándar o privilegiados de forma granular. En un entorno corporativo, el soporte técnico suele perder tiempo en atender tickets relacionados con el restablecimiento de contraseñas, el desbloqueo de usuarios y la creación de cuentas, entre otras tareas. Aunque estas actividades son simples, consumen mucho tiempo.
+---
 
-La delegación de control (Delegate Control) permite al área de seguridad de la información otorgar permisos específicos al personal de soporte técnico sin comprometer la seguridad. De esta manera, se evita la mala práctica de conceder accesos innecesarios, como la membresía en el grupo "Domain Admin" o privilegios de administrador local.
+## ⚠️ Importancia del Privilegio Mínimo
+La mayoría de los ataques cibernéticos explotan **credenciales privilegiadas**. Reduciendo los privilegios administrativos y de superusuario, se limita la superficie de ataque y se mejora la seguridad organizacional.
 
-## Security (NTFS) VS Sharing (SMB).
-Para muchos, la diferencia entre NTFS y SMB puede resultar confusa, por lo que es importante aclarar los conceptos de "Security vs. Sharing". Algo fundamental a tener en cuenta es que, al combinar ambos permisos, se genera un conjunto de reglas y, cuando se accede a los recursos desde la red, se aplica el permiso más restrictivo.
+Beneficios clave:
+✔️ Minimiza el riesgo de accesos no autorizados.  
+✔️ Reduce el impacto de malware y ataques internos.  
+✔️ Mejora el cumplimiento de normativas de seguridad.  
+✔️ Aumenta la trazabilidad y control de accesos.  
 
+---
 
-## Auditoría de archivos y carpetas.
-Durante un tiempo investigué cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar soluciones de terceros. Después de muchas horas de análisis y con la intención de habilitar la auditoría solo en carpetas críticas, llegué a una conclusión: la mayoría de los procedimientos documentados en internet no diferenciaban entre carpetas críticas y el resto del sistema.
-Como resultado, he desarrollado un script en PowerShell compuesto por dos archivos, que permite auditar únicamente las carpetas críticas sin afectar el rendimiento del sistema.
+## 🔑 Delegate Control en Active Directory
 
+Active Directory permite delegar permisos específicos a usuarios estándar o privilegiados, evitando la mala práctica de asignar accesos innecesarios.
 
-## ¿Qué es Active Directory Tier Model?
-El modelo de niveles en Active Directory (Active Directory Tier Model) es una estructura en la que las autorizaciones de los usuarios están separadas por niveles de privilegio. Los usuarios solo pueden acceder a los recursos dentro del marco de permisos que se les han otorgado.
+🎯 **Casos de uso:**
+- Delegación de restablecimiento de contraseñas sin acceso administrativo total.
+- Permitir la creación y gestión de cuentas dentro de unidades organizativas específicas.
+- Asignación de permisos segmentados para soporte técnico sin otorgar roles elevados.
 
-El beneficio más importante de este modelo es la protección de las cuentas administrativas del dominio o "cuentas confidenciales", reduciendo así el riesgo de accesos indebidos y ataques dirigidos contra usuarios con privilegios elevados.
+✅ **Mejor práctica:** Evitar el uso indiscriminado del grupo **Domain Admins** y aplicar el principio de privilegio mínimo.
 
+---
 
-## Creditos:
-El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
+## 🔐 Security (NTFS) vs. Sharing (SMB)
+### 📜 Diferencias clave:
+- **NTFS (Security):** Permisos aplicados a archivos y carpetas locales.
+- **SMB (Sharing):** Permisos de acceso a recursos compartidos en red.
+
+📌 **Regla importante:** Cuando se combinan, **se aplicará el permiso más restrictivo** al acceder a través de la red.
+
+🔎 **Ejemplo:**
+```
+Security NTFS = Read
+Sharing SMB = Change
+```
+Resultado: Solo se otorgará acceso de **lectura**, ya que NTFS es más restrictivo.
+
+📖 [Leer más sobre Security vs. Sharing](./Security_vs_Sharing.md)
+
+---
+
+## 📂 Auditoría de Archivos y Carpetas
+
+Realizar auditorías de acceso a archivos y carpetas críticas ayuda a detectar accesos sospechosos y a cumplir con normativas de seguridad.
+
+🛠️ **Pasos recomendados:**
+1️⃣ Habilitar la auditoría de acceso a objetos en Active Directory.  
+2️⃣ Usar scripts de PowerShell para configurar auditoría específica.  
+3️⃣ Implementar GPOs para desplegar políticas de auditoría en servidores.  
+
+📖 [Leer más sobre Auditoría de Archivos](./File_Audit.md)
+
+---
+
+## 🏛️ Active Directory Tier Model
+El **modelo de niveles en Active Directory** segmenta los permisos administrativos en diferentes capas para reducir riesgos.
+
+📌 **Niveles de acceso:**
+- **Tier 0:** Administración de dominio y controladores de AD.
+- **Tier 1:** Administración de servidores y aplicaciones.
+- **Tier 2:** Administración de estaciones de trabajo y usuarios finales.
+
+✅ **Mejor práctica:** Aplicar segmentación estricta y evitar el uso de cuentas con privilegios elevados en múltiples niveles.
+
+---
+
+## 👨‍💻 Créditos
+📌 **Autor:** José Félix *(Rookieヾ ⁿᵒᵛᵃᵗᵒ)*  
+📌 **Repositorio:** [GitHub - Least Privilege](#)  
