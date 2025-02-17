@@ -1,76 +1,69 @@
-## Auditoría de archivos y carpetas
+
+# Auditoría de Archivos y Carpetas
+
 ## Contenido
 
-- Introducción.
-- Auditoría de archivos y carpetas.
-- Paso practico de implementacion.
-- Recomendaciones.
+- [Introducción](#introducción)
+- [Auditoría de archivos y carpetas](#auditoría-de-archivos-y-carpetas)
+- [Paso práctico de implementación](#paso-práctico-de-implementación)
+- [Recomendaciones](#recomendaciones)
+- [Créditos](#créditos)
 
-## Introducción.
+## Introducción
 
-La auditoría de seguridad es una de las herramientas más eficaces para mantener la seguridad de una empresa.
-Uno de los principales objetivos de las auditorías de seguridad es el cumplimiento de las normas.
-Además, las auditorías de seguridad ayudan a detectar comportamientos anómalos, a identificar y mitigar brechas
-en las directivas de seguridad y a impedir el comportamiento irresponsable mediante la creación de un registro
-de la actividad del usuario que puede utilizarse para un análisis forense. Los requisitos de directiva de auditoría
-generalmente se impulsan en 4 niveles principales, pero nos centraremos en el siguientes:
+La auditoría de seguridad es una de las herramientas más eficaces para mantener la seguridad de una empresa. Uno de sus principales objetivos es garantizar el cumplimiento de normativas, detectar comportamientos anómalos y prevenir accesos no autorizados mediante el registro de actividad de los usuarios.
 
-Seguridad de la información.
+Los seguimientos de auditoría de acceso a archivos permiten a las organizaciones mejorar notablemente su tiempo de respuesta y la exactitud de la investigación.
 
-Los seguimientos de auditoría de acceso a archivos a menudo se utilizan para análisis forenses y detección de intrusión.
-Poder obtener eventos concretos sobre el acceso a información de alto nivel permite a las organizaciones mejorar notablemente su
-tiempo de respuesta y la exactitud de la investigación.
+> **Referencia**: [Auditoría de acceso a archivos en Windows](https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/scenario--file-access-auditing)
 
-Link Referencia: https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/scenario--file-access-auditing
+![Auditoría de acceso](https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/media/scenario--file-access-auditing/dynamicaccesscontrol_revguide_4.jpg)
 
-![image](https://learn.microsoft.com/es-es/windows-server/identity/solution-guides/media/scenario--file-access-auditing/dynamicaccesscontrol_revguide_4.jpg)
+## Auditoría de Archivos y Carpetas
 
-## Auditoría de archivos y carpetas.
+Durante un tiempo, investigué cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar software de terceros. Tras muchas pruebas, diseñé un método para auditar carpetas críticas sin afectar todo el sistema.
 
+### Solución propuesta
 
-Durante un tiempo estuve investigando cómo configurar la auditoría del sistema de archivos y carpetas en Windows sin instalar ninguna
-solución de tercero y de carpetas críticas. luego de muchas horas de investigación y con una curiosidad que me invadía debido a deseaba
-habilitar la auditoria, pero a carpeta críticas y no todas las carpetas de Windows. como muchos procesos en internet tenía documentados.
+Se compone de dos archivos:
 
-Mi conclusión fue la siguiente:
-He construido un script de PowerShell que se compone de dos archivos.
+- **`DirectoryAudit.ps1`** → Script de PowerShell.
+- **`PathDirectoryAudit.txt`** → Lista de carpetas críticas.
 
-**DirectoryAudit.ps1** y **PathDirectoryAudit.txt**
+## Paso Práctico de Implementación
 
-Ambos juntos podemos habilitar la auditoria de carpetas criticas sin la necesidad de un software de tercero.
+### Paso 1: Configurar Auditoría en AD
+Se debe crear o modificar una política en Active Directory que habilite la auditoría de acceso a objetos.
 
-
-## Paso practico de implementacion.
-
-#### Paso#1 
-Se debe tener o crear una politica en AD que habilite el  “Audit Object Access”, **“Success” and “Failure”**
+```plaintext
+Ubicación: Computer Configuration → Windows Settings → Security Settings → Local Policies → Audit Policy
+Habilitar: "Audit Object Access" (Success & Failure)
 ```
-Este parámetro de configuración lo podemos encontrar en::
-“Computer Configuration” ➔ “Windows Settings” ➔ “Security Settings” ➔ “Local Policies” ➔ “Audit Policy”.
-```
-#### Paso#2
-Crear el **DirectoryAudit.ps1** con el siguiente contenido.
 
-```
+### Paso 2: Crear `DirectoryAudit.ps1`
+
+```powershell
 $TargetFolders = Get-Content C:\FilesandDirectoryAudit.txt
 $AuditUser = "Everyone"
 $AuditRules = "CreateFiles,Delete,DeleteSubdirectoriesAndFiles"
 $InheritType = "ContainerInherit,ObjectInherit"
 $AuditType = "Success"
 $AccessRule = New-Object System.Security.AccessControl.FileSystemAuditRule($AuditUser,$AuditRules,$InheritType,"None",$AuditType)
-foreach ($TargetFolder in $TargetFolders)
-{
+
+foreach ($TargetFolder in $TargetFolders) {
     $ACL = Get-Acl $TargetFolder
     $ACL.SetAuditRule($AccessRule)
-    Write-Host "Processing >",$TargetFolder
+    Write-Host "Procesando >", $TargetFolder
     $ACL | Set-Acl $TargetFolder
 }
-Write-Host "Audit Policy File/Directory applied successfully."
-```
-#### Paso#3
-Ahora crearemos el **PathDirectoryAudit.txt** con el siguiente contenido.
 
+Write-Host "Política de auditoría aplicada correctamente."
 ```
+
+### Paso 3: Crear `PathDirectoryAudit.txt`
+Lista de directorios críticos:
+
+```plaintext
 C:\Windows\AppPatch\Custom
 C:\Windows\system32\Drivers
 C:\Windows\System32\drivers\etc
@@ -84,26 +77,32 @@ C:\Windows\SysWOW64\Wbem
 C:\Windows\SysWOW64\WindowsPowerShell
 C:\Windows\Tasks
 ```
-#### Paso#4
-Colocar ambos archivo en la carpeta sysvol en mi laboratorio es **C:\Windows\SYSVOL\laps.local\**
 
-#### Paso#5
-Creamos una GPO que tome ambos archivo y lo coloque de manera local en cada servidor y luego la ejecute.
-
-```
-Computer Configuration ➔ Policies ➔ Windows Settings ➔ Scripts ➔ Startup ➔ C:\Windows\audit\DirectoryAudit.ps1
-
-Computer Configuration ➔ Preferences ➔ Windows Settings ➔ Files ➔
-    Source file: \\laps.local\\NETLOGON\audit\DirectoryAudit.ps1
-    Destination file: C:\Windows\audit\DirectoryAudit.ps1
-    
-Computer Configuration ➔ Preferences ➔ Windows Settings ➔ Files ➔
-    Source file: \\laps.local\\NETLOGON\audit\PathDirectoryAudit.txt
-    Destination file: C:\Windows\audit\PathDirectoryAudit.txt
+### Paso 4: Ubicar los Archivos en SYSVOL
+Los archivos deben almacenarse en:
+```plaintext
+C:\Windows\SYSVOL\laps.local\
 ```
 
-## Creditos:
-El contenido fue realizado por Jose Felix (Rookieヾ ⁿᵒᵛᵃᵗᵒ).
+### Paso 5: Configurar la GPO
+Crear una política de grupo (GPO) para distribuir y ejecutar el script:
 
+```plaintext
+Computer Configuration → Policies → Windows Settings → Scripts → Startup → C:\Windows\audit\DirectoryAudit.ps1
 
-##
+Computer Configuration → Preferences → Windows Settings → Files →
+    Source: \\laps.local\NETLOGON\audit\DirectoryAudit.ps1
+    Destination: C:\Windows\audit\DirectoryAudit.ps1
+
+Computer Configuration → Preferences → Windows Settings → Files →
+    Source: \\laps.local\NETLOGON\audit\PathDirectoryAudit.txt
+    Destination: C:\Windows\audit\PathDirectoryAudit.txt
+```
+
+## Recomendaciones
+- Revisar periódicamente los registros de auditoría.
+- No habilitar auditoría en todas las carpetas del sistema para evitar sobrecarga.
+- Probar en un entorno de prueba antes de implementarlo en producción.
+
+## Créditos
+Este contenido fue elaborado por **José Félix (Rookieヾ ⁿᵒᵛᵃᵗᵒ)**.
