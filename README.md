@@ -81,6 +81,7 @@ El **modelo de niveles en Active Directory** segmenta los permisos administrativ
 
 ✅ **Mejor práctica:** Aplicar segmentación estricta y evitar el uso de cuentas con privilegios elevados en múltiples niveles.
 
+📖 [Leer más Active Directory Tier Model](https://github.com/J0s3F3lix/Least-Privilege-Windows/blob/main/Tier%20Model%20in%20AD.md)
 ---
 
 ## 👨‍💻 Créditos
