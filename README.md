@@ -54,7 +54,7 @@ Sharing SMB = Change
 ```
 Resultado: Solo se otorgará acceso de **lectura**, ya que NTFS es más restrictivo.
 
-📖 [Leer más sobre Security vs. Sharing](./Security_vs_Sharing.md)
+📖 [Leer más sobre Security vs. Sharing](https://github.com/J0s3F3lix/Least-Privilege-Windows/blob/main/Security%20vs%20sharing.md)
 
 ---
 
